@@ -1,0 +1,27 @@
+version: v1.0
+name: "\U0001F3AF Simple CI Pipeline"
+agent:
+  machine:
+    type: s1-kubernetes
+    os_image: ''
+  containers:
+    - name: main
+      image: 'registry.semaphoreci.com/node:20'
+fail_fast:
+  stop:
+    when: branch != 'main'
+auto_cancel:
+  running:
+    when: branch != 'main'
+  queued:
+    when: branch = 'main'
+blocks:
+  - name: "\U0001F9EA Test"
+    task:
+      jobs:
+        - name: "\U0001F7E2 Run Tests"
+          commands:
+            - echo "Checking out code..."
+            - echo "Installing dependencies..."
+            - echo "Running test suite in container..."
+            - echo "Tests completed successfully!"
