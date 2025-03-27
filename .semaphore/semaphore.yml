@@ -4,9 +4,6 @@ agent:
   machine:
     type: s1-kubernetes
     os_image: ''
-  containers:
-    - name: main
-      image: 'docker:dind'
 fail_fast:
   stop:
     when: branch != 'main'
