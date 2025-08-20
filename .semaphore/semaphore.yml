@@ -1,27 +1,21 @@
 version: v1.0
-name: "\U0001F3AF Simple CI Pipeline"
+name: Initial Pipeline
 agent:
   machine:
-    type: s1-kubernetes
-    os_image: ''
-  containers:
-    - name: main
-      image: 'registry.semaphoreci.com/node:20'
-fail_fast:
-  stop:
-    when: branch != 'main'
-auto_cancel:
-  running:
-    when: branch != 'main'
-  queued:
-    when: branch = 'main'
+    type: f1-standard-2
+    os_image: ubuntu2204
 blocks:
-  - name: "\U0001F9EA Test"
+  - name: Build
     task:
       jobs:
-        - name: "\U0001F7E2 Run Tests"
+        - name: Build
           commands:
-            - echo "Checking out code..."
-            - echo "Installing dependencies..."
-            - echo "Running test suite in container..."
-            - echo "Tests completed successfully!"
+            - checkout
+  - name: Test
+    task:
+      jobs:
+        - name: Unit tests
+          commands: []
+promotions:
+  - name: Deploy
+    pipeline_file: pipeline_2.yml
