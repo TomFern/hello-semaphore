@@ -11,11 +11,3 @@ blocks:
         - name: Build
           commands:
             - checkout
-  - name: Test
-    task:
-      jobs:
-        - name: Unit tests
-          commands: []
-promotions:
-  - name: Deploy
-    pipeline_file: pipeline_2.yml
