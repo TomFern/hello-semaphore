@@ -1,21 +1,13 @@
 version: v1.0
-name: "\U0001F3AF Simple CI Pipeline"
+name: Initial Pipeline
 agent:
   machine:
     type: s1-kubernetes
     os_image: ''
-fail_fast:
-  stop:
-    when: branch != 'main'
-auto_cancel:
-  running:
-    when: branch != 'main'
-  queued:
-    when: branch = 'main'
 blocks:
-  - name: "\U0001F4E6 Build"
+  - name: 'Block #1'
     task:
       jobs:
-        - name: Install Dependencies
+        - name: 'Job #1'
           commands:
-            - docker ps -a
+            - checkout
